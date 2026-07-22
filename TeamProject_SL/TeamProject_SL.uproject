@@ -67,6 +67,14 @@
 		{
 			"Name": "CommonUI",
 			"Enabled": true
+		},
+		{
+			"Name": "MovieRenderPipeline",
+			"Enabled": true
+		},
+		{
+			"Name": "Text3D",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [
