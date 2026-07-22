@@ -40,6 +40,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	void ResetGroggy();
 
+	// 사망 처리(OnMonsterDeath) 시 호출 — Groggy를 Max로 고정하고 이후 변경되지 않게 잠금
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	void LockGroggyAtMax();
+
+
+
 protected:
 	// 부모 CharacterBase에서 Health / MaxHealth 관련 바인딩(UI 갱신용)은 이미 처리됨
 	// 몬스터 전용 Attribute인 Groggy / MaxGroggy 바인딩과, 사망 감지용 Health 바인딩을 추가로 등록

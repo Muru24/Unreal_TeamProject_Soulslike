@@ -76,3 +76,11 @@ void AMonsterCharacterBase::ResetGroggy()
 		MonsterAttribute->SetGroggy(0.0f);
 	}
 }
+
+void AMonsterCharacterBase::LockGroggyAtMax()
+{
+	if (MonsterAttribute)
+	{
+		MonsterAttribute->LockGroggyAtMax();
+	}
+}
