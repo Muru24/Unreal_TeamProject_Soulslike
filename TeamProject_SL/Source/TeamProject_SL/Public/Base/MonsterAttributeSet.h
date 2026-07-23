@@ -29,7 +29,10 @@ public:
 	FGameplayAttributeData MaxGroggy;
 	ATTRIBUTE_ACCESSORS_BASIC(UMonsterAttributeSet, MaxGroggy);
 
-private:	
+	// 사망 이후 Groggy를 Max로 고정하고, 이후 어떤 GameplayEffect가 들어와도 값이 안 바뀌게 잠금
+	void LockGroggyAtMax();
+
+private:
 	UFUNCTION()
 	void OnRep_Groggy(const FGameplayAttributeData& OldValue) const;
 
@@ -39,4 +42,7 @@ private:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
+
+	// true가 되면 Groggy는 더 이상 변하지 않고 Max로 고정됨 (사망 이후 사용)
+	bool bGroggyLocked = false;
 };

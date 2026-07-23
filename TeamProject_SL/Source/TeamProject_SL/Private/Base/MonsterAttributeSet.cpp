@@ -35,7 +35,7 @@ void UMonsterAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribut
 
 	if (Attribute == GetGroggyAttribute())
 	{
-		NewValue = FMath::Clamp(NewValue, 0.0f, GetMaxGroggy());
+		NewValue = bGroggyLocked ? GetMaxGroggy() : FMath::Clamp(NewValue, 0.0f, GetMaxGroggy());
 	}
 }
 
@@ -45,6 +45,12 @@ void UMonsterAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCal
 
 	if (Data.EvaluatedData.Attribute == GetGroggyAttribute())
 	{
-		SetGroggy(FMath::Clamp(GetGroggy(), 0.0f, GetMaxGroggy()));
+		SetGroggy(bGroggyLocked ? GetMaxGroggy() : FMath::Clamp(GetGroggy(), 0.0f, GetMaxGroggy()));
 	}
+}
+
+void UMonsterAttributeSet::LockGroggyAtMax()
+{
+	bGroggyLocked = true;
+	SetGroggy(GetMaxGroggy());
 }
